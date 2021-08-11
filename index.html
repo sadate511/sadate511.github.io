@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sen Money</title>
+    <script src=".\node_modules\jquery\dist\jquery.min.js"></script>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <center>
+    <fieldset>
+    <div id="home">
+        <h1>Senmoney</h1>
+        <select name="num" id="num" style="margin:5px auto"style="background-color:bleue">
+            <option value="null" disabled selected style="background-color:bleue">Selectionner un numéro ...</option>
+        </select>
+        <button onclick="main()"style="background-color:bleue">#221#</button>
+    </div>
+
+    <script>
+        const res = $.ajax({
+            type: "GET",
+            //url: "allAccount.php",
+            url: "ges.php",
+            dataType: "json",
+            }).done(function (data) {
+            console.log(`data`, data);
+            const allData = data;
+            for (var i = 0; i < data.length; i++) 
+            {
+                $("#num").append(
+                '<option value="' + data[i].id + '">' + data[i].numero + "</option>"
+                );
+            }
+        });
+    </script>
+    </fieldset>
+</center>
+</body>
+
+</html>
